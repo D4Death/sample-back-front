@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>net_core_finocio_crawl</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'net_core_sample_crawl' " />
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.6" />
+    <PackageReference Include="SocketIOClient" Version="2.1.6" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Model\Utilities\WebApiServer.cs" />
+    <Compile Remove="Model\Utilities\AppSettings.cs" />
+    <Compile Remove="Model\Utilities\ConnectionStrings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\finocio-ultilities\finocio-ultilities.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+</Project>

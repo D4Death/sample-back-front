@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "worker_netcore_crawl": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "environmentVariables": {}
+    }
+  }
+}

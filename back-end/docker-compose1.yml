@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  finocio-api:
+    image: ${DOCKER_REGISTRY-}finocioapi
+    build:
+      context: .
+      dockerfile: finocio-api/Dockerfile

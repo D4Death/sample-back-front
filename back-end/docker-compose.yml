@@ -1,0 +1,86 @@
+version: "3.4"
+services:
+  finocio_api:
+    image: finocio_api
+    restart: always
+    networks:
+      - finocio_network
+    volumes:
+      - ./app:/srv/api
+    ports:
+      - "8090:8090"
+    depends_on:
+      - postgresdb
+      - mongodb
+      - redisdb
+
+  fino_worker:
+    image: fino_worker
+    restart: always
+    networks:
+      - finocio_network
+    volumes:
+      - ./app:/srv/worker
+    ports:
+      - "8098:8098"
+    depends_on:
+      - postgresdb
+      - mongodb
+      - redisdb
+
+  postgresdb:
+    image: postgres
+    restart: always
+    networks:
+      - finocio_network
+    environment:
+      POSTGRES_DB: finodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 6DTTH03+JbKQIUHAh/Jic9K/UYyCSxqkInDpJEerMbA=
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "2606:5432"
+
+  mongodb:
+    image: mongo
+    restart: always
+    networks:
+      - finocio_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: finoMongo
+      MONGO_INITDB_ROOT_PASSWORD: DYTnnXdG2uzcmiEQV30JceyBFzXpCYazBCi0JbDdstTvijkpHJGYlez8JG9TsHIK
+    volumes:
+      - ./mongo-data:/data/db
+    ports:
+      - "27109:27017"
+
+  redisdb:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "2309:6379"
+    networks:
+      - finocio_network
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    volumes:
+      - ./redis-data:/var/lib/redis
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server --save 60 1 --requirepass
+      7VMM6a0k0eWzDpSAbJS8hTEijlZdVMlAQdTF+RS+GJdgHvjHjiAChAIyYM9JEwC2bWdGY6ZJ0yFWyKrf
+      --loglevel warning
+
+  finocio_node_api:
+    image: finocio_node_api
+    restart: always
+    networks:
+      - finocio_network
+    ports:
+      - "3101:3101"
+    volumes:
+      - ./app:/srv/node-api
+
+networks:
+  finocio_network:
+    external: true

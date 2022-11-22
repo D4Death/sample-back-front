@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>finocio_model</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'sample_model' " />
+  <ItemGroup>
+    <Folder Include="OHLC\" />
+    <Folder Include="Mongo\" />
+  </ItemGroup>
+</Project>

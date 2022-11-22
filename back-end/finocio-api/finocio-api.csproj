@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>finocio_api</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'sample_api' " />
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Entity\" />
+    <Folder Include="Controller\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\UserManagement\" />
+    <Folder Include="Services\PortfolioManagement\" />
+    <Folder Include="Model\" />
+    <Folder Include="Model\Portfolio\" />
+    <Folder Include="Model\User\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\ChartManagement\" />
+    <Folder Include="Services\MarketManagement\" />
+    <Folder Include="Entity\FinoEntity\" />
+    <Folder Include="Entity\StockEntity\" />
+    <Folder Include="Model\Market\" />
+    <Folder Include="Services\TokenManagement\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\finocio-ultilities\finocio-ultilities.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\finocio-model\finocio-model.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Services\MarketManagement\" />
+    <None Remove="Entity\FinoEntity\" />
+    <None Remove="Entity\StockEntity\" />
+    <None Remove="Model\Market\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Services\TokenManagement\" />
+  </ItemGroup>
+</Project>
